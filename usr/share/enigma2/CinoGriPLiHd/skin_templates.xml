@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin>
+  <!-- Templates -->
+  <screen name="PlayerTemplate">
+    <widget source="session.CurrentService" render="Label" position="c-416,4" size="832,49" backgroundColor="transparent" zPosition="1" foregroundColor="foreground" borderWidth="1" font="Regular;24" borderColor="black" valign="center" halign="center">
+      <convert type="ServiceName">Name</convert>
+    </widget>
+    <ePixmap pixmap="CinoGriPLiHd/dvr/scale1024.png" position="28,58" size="1024,8" zPosition="1" />
+    <widget source="session.CurrentService" render="PositionGauge" position="28,56" size="1024,12" transparent="1" zPosition="4" pointer="CinoGriPLiHd/dvr/position_pointer1024.png:1536,4">
+      <convert type="ServicePosition">Gauge</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" position="28,30" size="90,24" backgroundColor="transparent" zPosition="4" foregroundColor="foreground" borderWidth="1" font="Regular;22" borderColor="black" valign="center" halign="left">
+      <convert type="ServicePosition">Position,ShowHours</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" position="934,30" size="116,24" backgroundColor="transparent" zPosition="4" foregroundColor="foreground" borderWidth="1" font="Regular;22" borderColor="black" valign="center" halign="right">
+      <convert type="ServicePosition">Remaining,Plus,ShowHours</convert>
+    </widget>
+    <widget source="session.RecordState" render="Pixmap" pixmap="CinoGriPLiHd/buttons/rec.png" position="1060,52" size="20,20" zPosition="3" alphatest="on">
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="global.CurrentTime" render="Label" borderWidth="1" position="952,2" size="100,24" backgroundColor="transparent" noWrap="1" zPosition="1" foregroundColor="foreground" font="Regular;22" valign="center" halign="right">
+      <convert type="ClockToText">Format:%-H:%M</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" position="c-72,70" size="146,20" zPosition="2" backgroundColor="transparent" foregroundColor="foreground" font="Regular;20" borderWidth="1" valign="top" halign="center">
+      <convert type="PliExtraInfo">ResolutionString</convert>
+    </widget>
+    <eLabel position="28,70" size="150,130" backgroundColor="transparent" borderWidth="1" font="Regular;24" borderColor="black" halign="left" text="&gt;" zPosition="1" />
+  </screen>
+  <screen name="TopTemplate">
+    <eLabel position="0,0" size="1280,58" backgroundColor="background1" foregroundColor="background1" />
+    <eLabel position="0,682" size="1280,38" backgroundColor="background1" foregroundColor="background1" />
+    <ePixmap pixmap="CinoGriPLiHd/border/smallshadowline.png" position="0,58" size="1280,2" zPosition="2" />
+    <widget source="screen_path" render="Label" position="20,3" size="1066,13" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;12" valign="center" halign="left" />
+    <widget source="Title" render="Label" position="10,0" size="1013,56" backgroundColor="black" transparent="1" zPosition="1" font="Roboto; 26" valign="center" halign="left" foregroundColor="whitea" noWrap="1" />
+    <widget source="global.CurrentTime" render="Label" position="1082,0" size="150,26" backgroundColor="black" transparent="1" zPosition="3" font="Roboto; 24" valign="center" halign="right" foregroundColor="white">
+      <convert type="ClockToText">Format:%H : %M</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="1030,28" size="240,24" backgroundColor="black" transparent="1" zPosition="3" font="Roboto; 18" valign="center" halign="right" foregroundColor="Gri 81">
+      <convert type="ClockToText">Format:%a, %e. %B. %Y</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="1228,2" size="42,20" backgroundColor="black" transparent="1" zPosition="3" font="Roboto; 18" valign="center" halign="right" foregroundColor="secondFG">
+      <convert type="ClockToText">Format:: %S</convert>
+    </widget>
+  </screen>
+  <screen name="BasicTemplate">
+    <panel name="TopTemplate" />
+    <panel name="ButtonTemplate" />
+    <ePixmap pixmap="CinoGriPLiHd/border/smallshadowline.png" position="0,680" size="1280,2" />
+  </screen>
+  <screen name="TextTemplate">
+    <widget name="text" position="20,352" size="480,320" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;20" />
+  </screen>
+  <screen name="SelectionTemplate">
+    <panel name="BasicTemplate" />
+    <widget source="session.VideoPicture" render="Pig" position="0,72" size="500,270" backgroundColor="transparent" zPosition="1" />
+    <ePixmap pixmap="CinoGriPLiHd/infobar/cerceve.png" position="0,72" size="500,270" zPosition="10" />
+  </screen>
+
+  <screen name="PigTemplate">
+    <panel name="SelectionTemplate" />
+    <ePixmap pixmap="CinoGriPLiHd/logos/pli.png" position="136,594" size="187,38" scale="1" zPosition="1" alphatest="blend" />
+    <ePixmap pixmap="CinoGriPLiHd/logos/sllogo.png" position="366,570" size="100,98" alphatest="on" />
+  </screen>
+
+  <screen name="PigLessTemplate">
+    <panel name="BasicTemplate" />
+    <ePixmap pixmap="../logo/logo-white.png" position="20,644" size="188,34" scale="1" zPosition="1" alphatest="blend" />
+  </screen>
+  <screen name="MenuTemplate">
+    <panel name="PigTemplate" />
+    <widget source="menu" render="Listbox" position="521,70" size="740,600" font="Regular;24" transparent="1" scrollbarMode="showOnDemand">
+      <convert type="TemplatedMultiContent">
+				{"template": [ MultiContentEntryText(pos = (50,10),size = (690,30),flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER,text = 0) ],
+		"fonts": [gFont("Regular",24)],
+		"itemHeight": 50
+	}
+			</convert>
+    </widget>
+  </screen>
+  <!-- VKeyIconPanel -->
+  <!--This conditionally shows "Text" to indicate that the virtual keyboard can be activated by pessin the "Subtitle/Text" button-->
+  <screen name="VKeyIconPanel">
+    <widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" alphatest="blend" position="20,689" size="34,25" zPosition="2">
+      <convert type="ConditionalShowHide" />
+    </widget>
+  </screen>
+  <!-- Button Templates -->
+  <screen name="ButtonRed">
+    <widget objectTypes="key_red,StaticText" source="key_red" render="Pixmap" pixmap="CinoGriPLiHd/buttons/red.png" position="128,690" size="22,22" alphatest="blend" zPosition="2">
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <ePixmap objectTypes="key_red,Button,Label" pixmap="CinoGriPLiHd/buttons/red.png" position="128,690" size="22,22" alphatest="blend" zPosition="3" />
+  </screen>
+  <screen name="ButtonGreen">
+    <widget objectTypes="key_green,StaticText" source="key_green" render="Pixmap" pixmap="CinoGriPLiHd/buttons/green.png" position="418,690" size="22,22" alphatest="blend" zPosition="2">
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <ePixmap objectTypes="key_green,Button,Label" pixmap="CinoGriPLiHd/buttons/green.png" position="418,690" size="22,22" alphatest="blend" zPosition="3" />
+  </screen>
+  <screen name="ButtonYellow">
+    <widget objectTypes="key_yellow,StaticText" source="key_yellow" render="Pixmap" pixmap="CinoGriPLiHd/buttons/yellow.png" position="709,690" size="22,22" alphatest="blend" zPosition="2">
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <ePixmap objectTypes="key_yellow,Button,Label" pixmap="CinoGriPLiHd/buttons/yellow.png" position="709,690" size="22,22" alphatest="blend" zPosition="3" />
+  </screen>
+  <screen name="ButtonBlue">
+    <widget objectTypes="key_blue,StaticText" source="key_blue" render="Pixmap" pixmap="CinoGriPLiHd/buttons/blue.png" position="1000,690" size="22,22" alphatest="blend" zPosition="2">
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <ePixmap objectTypes="key_blue,Button,Label" pixmap="CinoGriPLiHd/buttons/blue.png" position="1000,690" size="22,22" alphatest="blend" zPosition="3" />
+  </screen>
+  <screen name="ButtonTemplate">
+    <panel name="ButtonRed" />
+    <widget objectTypes="key_red,Label,Button" name="key_red" position="161,688" size="246,26" backgroundColor="basictemplatecolor" zPosition="1" transparent="1" font="Roboto; 22" halign="left" />
+    <widget objectTypes="key_red,StaticText" source="key_red" render="Label" position="161,688" size="246,26" backgroundColor="basictemplatecolor" zPosition="2" transparent="1" foregroundColor="grey" font="Roboto; 22" halign="left" />
+    <panel name="ButtonGreen" />
+    <widget objectTypes="key_green,Label,Button" name="key_green" position="452,688" size="246,26" backgroundColor="basictemplatecolor" zPosition="1" transparent="1" font="Roboto; 22" halign="left" />
+    <widget objectTypes="key_green,StaticText" source="key_green" render="Label" position="452,688" size="246,26" backgroundColor="basictemplatecolor" zPosition="2" transparent="1" foregroundColor="grey" font="Roboto; 22" halign="left" />
+    <panel name="ButtonYellow" />
+    <widget objectTypes="key_yellow,Label,Button" name="key_yellow" position="742,688" size="246,26" backgroundColor="basictemplatecolor" zPosition="1" transparent="1" font="Roboto; 22" halign="left" />
+    <widget objectTypes="key_yellow,StaticText" source="key_yellow" render="Label" position="742,688" size="246,26" backgroundColor="basictemplatecolor" zPosition="2" transparent="1" foregroundColor="grey" font="Roboto; 22" halign="left" />
+    <panel name="ButtonBlue" />
+    <widget objectTypes="key_blue,Label,Button" name="key_blue" position="1033,688" size="246,26" backgroundColor="basictemplatecolor" zPosition="1" transparent="1" font="Roboto; 22" halign="left" />
+    <widget objectTypes="key_blue,StaticText" source="key_blue" render="Label" position="1033,688" size="246,26" backgroundColor="basictemplatecolor" zPosition="2" transparent="1" foregroundColor="grey" font="Roboto; 22" halign="left" />
+    <panel name="KeyMenuAutoTemplate" />
+    <panel name="KeyInfoAutoTemplate" />
+  </screen>
+  <screen name="KeyMenuAutoTemplate">
+    <!-- show with Components.Sources.Boolean -->
+    <widget source="key_menu" conditional="key_menu" render="Pixmap" pixmap="skin_default/buttons/key_menu.png" alphatest="blend" position="54,689" size="34,25" zPosition="2">
+      <convert type="ConditionalShowHide" />
+    </widget>
+  </screen>
+  <screen name="KeyInfoAutoTemplate">
+    <!-- show with Components.Sources.Boolean -->
+    <widget source="key_info" conditional="key_info" render="Pixmap" pixmap="skin_default/buttons/key_info.png" alphatest="blend" position="90,689" size="34,25" zPosition="2">
+      <convert type="ConditionalShowHide" />
+    </widget>
+  </screen>
+  <screen name="KeyMenuTemplate">
+    <ePixmap pixmap="skin_default/buttons/key_menu.png" alphatest="blend" position="54,689" size="34,25" zPosition="2" />
+  </screen>
+  <screen name="KeyInfoTemplate">
+    <ePixmap pixmap="skin_default/buttons/key_info.png" alphatest="blend" position="90,689" size="34,25" zPosition="2" />
+  </screen>
+  <screen name="KeyZeroTemplate">
+    <ePixmap pixmap="skin_default/buttons/key_0.png" alphatest="blend" position="20,689" size="34,25" zPosition="2" />
+  </screen>
+  <screen name="KeyOkTemplate">
+    <ePixmap pixmap="skin_default/buttons/key_ok.png" alphatest="blend" position="20,689" size="34,25" zPosition="2" />
+  </screen>
+  <screen name="KeyOneTemplate">
+    <ePixmap pixmap="skin_default/buttons/key_1.png" alphatest="blend" position="20,689" size="34,25" zPosition="2" />
+  </screen>
+  <screen name="KeyTextTemplate">
+    <ePixmap pixmap="skin_default/buttons/key_text.png" alphatest="blend" position="412,689" size="34,25" zPosition="2" />
+  </screen>
+  <screen name="KeyTextTemplateBlue">
+    <ePixmap pixmap="skin_default/buttons/key_text.png" alphatest="blend" position="1000,689" size="34,25" zPosition="2" />
+  </screen>
+  <screen name="KeyExit">
+    <ePixmap pixmap="skin_default/buttons/key_exit.png" position="122,689" size="34,25" alphatest="blend" zPosition="2" />
+  </screen>
+  <screen name="CancelTemplate">
+    <ePixmap pixmap="CinoGriPLiHd/buttons/red.png" position="128,689" size="22,22" alphatest="blend" zPosition="2" />
+    <widget name="canceltext" position="161,688" zPosition="2" size="246,26" font="Roboto; 22" halign="left" backgroundColor="background" transparent="1" />
+  </screen>
+  <screen name="OKTemplate">
+    <ePixmap pixmap="CinoGriPLiHd/buttons/green.png" position="418,689" size="22,22" alphatest="blend" zPosition="2" />
+    <widget name="oktext" position="452,688" zPosition="2" size="246,26" font="Roboto; 22" halign="left" backgroundColor="background" transparent="1" />
+  </screen>
+  <screen name="CancelOKTemplate">
+    <panel name="CancelTemplate" />
+    <panel name="OKTemplate" />
+  </screen>
+  <screen name="KeyMenuInfoTemplate">
+    <panel name="KeyMenuTemplate" />
+    <panel name="KeyInfoTemplate" />
+  </screen>
+  <!-- Hideable buttons -->
+  <screen name="KeyPrevNextTemplate_Hideable">
+    <widget name="h_prev" pixmap="skin_default/buttons/key_prev.png" zPosition="2" alphatest="blend" position="20,689" size="34,25" />
+    <widget name="h_next" pixmap="skin_default/buttons/key_next.png" zPosition="2" alphatest="blend" position="54,689" size="34,25" />
+  </screen>
+  <!-- Infobar Template -->
+  <screen name="InfoBarTemplate">
+    <widget source="session.CurrentService" render="Picon" position="25,615" size="122,73" alphatest="blend" backgroundColor="secondBG" transparent="1" zPosition="2">
+      <convert type="ServiceName">Reference</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" borderWidth="1" position="246,606" size="466,28" backgroundColor="black" transparent="1" zPosition="2" foregroundColor="saric" font="Roboto; 23" valign="center" halign="left" noWrap="1">
+      <convert type="ServiceName">Name</convert>
+    </widget>
+    <widget source="session.RecordState" render="Pixmap" pixmap="CinoGriPLiHd/buttons/rec.png" position="133,612" size="20,20" zPosition="3" alphatest="on">
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.Event_Now" render="Label" position="176,653" size="68,26" borderWidth="1" backgroundColor="black" transparent="1" zPosition="2" foregroundColor="amavi" font="Regular; 19" halign="left" valign="center">
+      <convert type="EventTime">StartTime</convert>
+      <convert type="ClockToText">Format:%H:%M</convert>
+    </widget>
+    <widget source="session.Event_Now" render="cnEmptyEpg" emptyText="Event data unavailable" borderWidth="1" position="236,653" size="308,26" backgroundColor="black" transparent="1" zPosition="2" foregroundColor="undddddd" noWrap="1" font="Regular;19" valign="center" halign="left">
+      <convert type="EventName">Name</convert>
+    </widget>
+    <widget source="session.Event_Now" render="Label" position="541,653" size="86,26" borderWidth="1" backgroundColor="black" transparent="1" zPosition="2" foregroundColor="amavi" font="Regular; 19" halign="right" valign="center">
+      <convert type="EventTime">Remaining</convert>
+      <convert type="RemainingToText">InMinutes</convert>
+    </widget>
+    <widget source="session.Event_Next" render="Label" position="176,689" size="68,26" borderWidth="1" backgroundColor="black" transparent="1" zPosition="2" foregroundColor="amavi" font="Regular; 18" halign="left" valign="center">
+      <convert type="EventTime">StartTime</convert>
+      <convert type="ClockToText">Default;Proportional</convert>
+    </widget>
+    <widget source="session.Event_Next" emptyText="Event data unavailable" borderWidth="1" render="cnEmptyEpg" position="236,689" size="308,26" backgroundColor="black" transparent="1" zPosition="2" foregroundColor="uncccccc" noWrap="1" font="Regular;18" valign="center" halign="left">
+      <convert type="EventName">Name</convert>
+    </widget>
+    <widget source="session.Event_Now" render="Progress" pixmap="CinoGriPLiHd/infobar/pbar1.png" position="176,643" size="772,4" backgroundColor="un33333a" transparent="0" zPosition="2" borderWidth="0">
+      <convert type="EventTime">Progress</convert>
+    </widget>
+    <widget render="Label" source="session.CurrentService" borderWidth="1" position="13,700" size="146,18" backgroundColor="black" font="Regular; 14" foregroundColor="white" halign="center" transparent="1" zPosition="2" noWrap="1">
+      <convert type="PliExtraInfo">ResolutionString</convert>
+    </widget>
+    <!-- Infobar  iconları -->
+    <ePixmap pixmap="CinoGriPLiHd/infobar/ico_dolby_off.png" position="822,658" size="38,17" alphatest="blend" />
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/ico_dollby_on.png" position="822,658" size="38,17" zPosition="1" alphatest="blend">
+      <convert type="ServiceInfo">IsMultichannel</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/ico_sd_onn.png" position="690,658" size="38,17" zPosition="3" alphatest="blend">
+      <convert type="ServiceInfo">IsSDAndNotWidescreen</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/ico_format_on.png" position="690,658" size="38,17" zPosition="5" alphatest="blend">
+      <convert type="ServiceInfo">IsWidescreen</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <ePixmap pixmap="CinoGriPLiHd/infobar/ico_txt_off.png" position="734,658" size="38,17" alphatest="blend" />
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/icon_txt_on.png" position="734,658" size="38,17" zPosition="1" alphatest="blend">
+      <convert type="ServiceInfo">HasTelext</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/ico_uhd_4k.png" position="646,658" size="38,17" zPosition="4" alphatest="blend">
+      <convert type="ServiceInfo">VideoHeight</convert>
+      <convert type="ValueRange">1981,3840</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/ico_fhd_on.png" position="646,658" size="38,17" zPosition="3" alphatest="blend">
+      <convert type="ServiceInfo">VideoHeight</convert>
+      <convert type="ValueRange">1080,1920</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/ico_hd_on.png" position="646,658" size="38,17" zPosition="2" alphatest="blend">
+      <convert type="ServiceInfo">VideoHeight</convert>
+      <convert type="ValueRange">720,1079</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/ico_sd_on.png" position="646,658" size="38,17" zPosition="1" alphatest="blend">
+      <convert type="ServiceInfo">VideoHeight</convert>
+      <convert type="ValueRange">0,719</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <ePixmap pixmap="CinoGriPLiHd/infobar/ico_crypt_off.png" position="778,658" size="38,17" alphatest="blend" />
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/ico_cryptt_on.png" position="778,658" size="38,17" zPosition="1" alphatest="blend">
+      <convert type="ServiceInfo">IsCrypted</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <ePixmap pixmap="CinoGriPLiHd/infobar/ico_hbbtv_off.png" position="866,658" size="38,17" zPosition="1" alphatest="blend" />
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/ico_hbb_on.png" position="866,658" size="38,17" zPosition="2" alphatest="blend">
+      <convert type="ServiceInfo">HasHBBTV</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <ePixmap pixmap="CinoGriPLiHd/infobar/ico_sub_off.png" position="910,658" size="38,17" zPosition="1" alphatest="blend" />
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/ico_subb_on.png" position="910,658" size="38,17" zPosition="2" alphatest="blend">
+      <convert type="ServiceInfo">SubservicesAvailable</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="Pixmap" pixmap="CinoGriPLiHd/infobar/stream_on.png" position="20,612" size="38,17" zPosition="4" alphatest="blend">
+      <convert type="ClientsStreaming" />
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <ePixmap pixmap="CinoGriPLiHd/infobar/pcon.png" position="13,606" size="146,92" alphatest="blend" zPosition="1" />
+    <!-- Emu sifreleme iconları -->
+    <eLabel text="Pw" font="emu; 14" position="638,694" size="28,16" halign="center" backgroundColor="darkgreyy" transparent="0" valign="center" zPosition="3" foregroundColor="bbeyaz" />
+    <widget source="session.CurrentService" render="FixedLabel" text="Pw" position="638,694" size="28,16" halign="center" backgroundColor="darkgreyy" foregroundColor="orange" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">PowerVuCrypt</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="FixedLabel" text="Pw" position="638,694" size="28,16" halign="center" backgroundColor="darkgreyy" foregroundColor="un0bf300" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">PowerVuEcm</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <eLabel text="Be" font="emu; 14" position="669,694" size="25,16" halign="center" backgroundColor="darkgreyy" transparent="0" valign="center" zPosition="3" foregroundColor="bbeyaz" />
+    <widget source="session.CurrentService" render="FixedLabel" text="Be" position="669,694" size="25,16" halign="center" backgroundColor="darkgreyy" foregroundColor="orange" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">BetaCrypt</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="FixedLabel" text="Be" position="669,694" size="25,16" halign="center" backgroundColor="darkgreyy" foregroundColor="un0bf300" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">BetaEcm</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <eLabel text="Ir" font="emu; 14" position="698,694" size="17,16" halign="center" backgroundColor="darkgreyy" transparent="0" valign="center" zPosition="3" foregroundColor="bbeyaz" />
+    <widget source="session.CurrentService" render="FixedLabel" text="Ir" position="698,694" size="17,16" halign="center" backgroundColor="darkgreyy" foregroundColor="orange" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">IrdCrypt</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="FixedLabel" text="Ir" position="698,694" size="17,16" halign="center" backgroundColor="darkgreyy" foregroundColor="un0bf300" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">IrdEcm</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <eLabel text="Se" font="emu; 14" position="718,694" size="25,16" halign="center" backgroundColor="darkgreyy" transparent="0" valign="center" zPosition="3" foregroundColor="bbeyaz" />
+    <widget source="session.CurrentService" render="FixedLabel" text="Se" position="718,694" size="25,16" halign="center" backgroundColor="darkgreyy" foregroundColor="orange" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">SecaCrypt</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="FixedLabel" text="Se" position="718,694" size="25,16" halign="center" backgroundColor="darkgreyy" foregroundColor="un0bf300" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">SecaEcm</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <eLabel text="Vi" font="emu; 14" position="747,694" size="20,16" halign="center" backgroundColor="darkgreyy" transparent="0" valign="center" zPosition="3" foregroundColor="bbeyaz" />
+    <widget source="session.CurrentService" render="FixedLabel" text="Vi" position="747,694" size="20,16" halign="center" backgroundColor="darkgreyy" foregroundColor="orange" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">ViaCrypt</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="FixedLabel" text="Vi" position="747,694" size="20,16" halign="center" backgroundColor="darkgreyy" foregroundColor="un0bf300" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">ViaEcm</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <eLabel text="Na" font="emu; 14" position="770,694" size="26,16" halign="center" backgroundColor="darkgreyy" transparent="0" valign="center" zPosition="3" foregroundColor="bbeyaz" />
+    <widget source="session.CurrentService" render="FixedLabel" text="Na" position="770,694" size="26,16" halign="center" backgroundColor="darkgreyy" foregroundColor="orange" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">NagraCrypt</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="FixedLabel" text="Na" position="770,694" size="26,16" halign="center" backgroundColor="darkgreyy" foregroundColor="un0bf300" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">NagraEcm</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <eLabel text="Cw" font="emu; 14" position="800,694" size="28,16" halign="center" backgroundColor="darkgreyy" transparent="0" valign="center" zPosition="3" foregroundColor="bbeyaz" />
+    <widget source="session.CurrentService" render="FixedLabel" text="Cw" position="800,694" size="28,16" halign="center" backgroundColor="darkgreyy" foregroundColor="orange" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">CrwCrypt</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="FixedLabel" text="Cw" position="800,694" size="28,16" halign="center" backgroundColor="darkgreyy" foregroundColor="un0bf300" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">CrwEcm</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <eLabel text="Nd" font="emu; 14" position="832,694" size="26,16" halign="center" backgroundColor="darkgreyy" transparent="0" valign="center" zPosition="3" foregroundColor="bbeyaz" />
+    <widget source="session.CurrentService" render="FixedLabel" text="Nd" position="832,694" size="26,16" halign="center" backgroundColor="darkgreyy" foregroundColor="orange" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">NdsCrypt</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="FixedLabel" text="Nd" position="832,694" size="26,16" halign="center" backgroundColor="darkgreyy" foregroundColor="un0bf300" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">NdsEcm</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <eLabel text="Co" font="emu; 14" position="862,694" size="26,16" halign="center" backgroundColor="darkgreyy" transparent="0" valign="center" zPosition="3" foregroundColor="bbeyaz" />
+    <widget source="session.CurrentService" render="FixedLabel" text="Co" position="862,694" size="26,16" halign="center" backgroundColor="darkgreyy" foregroundColor="orange" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">ConaxCrypt</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="FixedLabel" text="Co" position="862,694" size="26,16" halign="center" backgroundColor="darkgreyy" foregroundColor="un0bf300" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">ConaxEcm</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <eLabel text="Dc" font="emu; 14" position="892,694" size="25,16" halign="center" backgroundColor="darkgreyy" transparent="0" valign="center" zPosition="3" foregroundColor="bbeyaz" />
+    <widget source="session.CurrentService" render="FixedLabel" text="Dc" position="892,694" size="25,16" halign="center" backgroundColor="darkgreyy" foregroundColor="orange" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">DreamCrypt</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="FixedLabel" text="Dc" position="892,694" size="25,16" halign="center" backgroundColor="darkgreyy" foregroundColor="un0bf300" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">DreamEcm</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <eLabel text="Bis" font="emu; 14" position="921,694" size="28,16" halign="center" backgroundColor="darkgreyy" transparent="0" valign="center" zPosition="3" foregroundColor="bbeyaz" />
+    <widget source="session.CurrentService" render="FixedLabel" text="Bis" position="921,694" size="28,16" halign="center" backgroundColor="darkgreyy" foregroundColor="orange" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">BisCrypt</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.CurrentService" render="FixedLabel" text="Bis" position="921,694" size="28,16" halign="center" backgroundColor="darkgreyy" foregroundColor="un0bf300" zPosition="4" transparent="0" valign="center" font="emu; 14">
+      <convert type="cnCaidInfo">BisEcm</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <eLabel name="" position="0,718" size="1280,6" backgroundColor="notavailable" foregroundColor="notavailable" zPosition="1" />
+    <widget source="session.CurrentService" render="cnEmptyEpg" emptyText="Servus Provider" position="590,609" size="359,24" borderWidth="1" backgroundColor="black" zPosition="2" font="Regular; 18" transparent="1" foregroundColor="uncccccc" noWrap="1" halign="right">
+      <convert type="ServiceName">Provider</convert>
+    </widget>
+    <eLabel text="Cpu:." position="964,656" size="49,20" font="Regular; 17" borderWidth="1" backgroundColor="black" foregroundColor="amavi" transparent="1" zPosition="2" halign="left" />
+    <widget source="global.CurrentTime" render="cnCpuTemp" borderWidth="1" position="1004,656" size="57,20" halign="center" font="Regular;17" backgroundColor="black" foregroundColor="bbeyaz" transparent="1" zPosition="2" />
+    <widget source="session.FrontendStatus" render="Label" borderWidth="1" position="1085,609" size="73,20" text="15.2 dB" backgroundColor="black" transparent="1" zPosition="2" foregroundColor="bbeyaz" font="Regular; 18" halign="right">
+      <convert type="CnFrontendInfo">SNRdB</convert>
+    </widget>
+    <!-- weather_icons -->
+    <ePixmap alphatest="blend" pixmap="CinoGriPLiHd/infobar/drc.png" position="1066,655" size="25,24" transparent="1" zPosition="3" />
+    <widget alphatest="blend" render="MSNWeatherPixmap" position="1173,606" size="93,66" source="session.MSNWeather" transparent="1" zPosition="10">
+      <convert type="MSNWeather">weathericon,current,/usr/share/enigma2/CinoGriPLiHd/weather_icons/,png</convert>
+    </widget>
+    <widget noWrap="1" foregroundColor="SteelBlue2" backgroundColor="black" transparent="1" font="Regular; 20" render="Label" position="1082,655" size="76,22" source="session.MSNWeather" zPosition="10" halign="right" valign="top">
+      <convert type="MSNWeather">temperature_current</convert>
+    </widget>
+    <!--<ePixmap pixmap="CinoGriPLiHd/icons/icon_update_off.png" position="60,34" size="20,20" zPosition="0" alphatest="blend"/>-->
+    <widget source="session.CurrentService" render="ChannelNumber" position="176,609" size="58,25" backgroundColor="background" transparent="1" zPosition="1" foregroundColor="unff3737" font="Roboto;21" valign="center" halign="center" />
+    <eLabel name="" position="176,684" size="982,1" foregroundColor="un33333a" zPosition="2" backgroundColor="un33333a" />
+    <ePixmap pixmap="CinoGriPLiHd/infobar/weather.png" position="1173,606" size="93,66" alphatest="blend" />
+    <eLabel text="SNR:." position="963,609" size="56,20" font="Regular; 18" borderWidth="1" backgroundColor="trBlack" transparent="1" zPosition="2" halign="left" foregroundColor="unff3737" />
+    <widget source="session.FrontendStatus" render="Label" position="1018,609" size="61,20" borderWidth="1" backgroundColor="black" transparent="1" zPosition="2" font="Regular; 18" halign="left" foregroundColor="bbeyaz">
+      <convert type="FrontendInfo">SNR</convert>
+    </widget>
+    <ePixmap pixmap="CinoGriPLiHd/infobar/chnmbr.png" position="176,609" size="58,25" alphatest="blend" />
+    <widget source="session.CurrentService" render="Label" position="1025,692" size="241,21" borderWidth="1" font="Roboto; 16" backgroundColor="black" transparent="1" halign="right" noWrap="1" valign="center" foregroundColor="bbbbbf" zPosition="2">
+      <convert type="cnServiceName">%F   %p   %Y   %f   %M   %b</convert>
+    </widget>
+    <widget source="session.FrontendStatus" render="Progress" position="965,643" size="193,4" zPosition="3" pixmap="CinoGriPLiHd/infobar/snron.png" transparent="1">
+      <convert type="FrontendInfo">SNR</convert>
+    </widget>
+    <widget source="session.Event_Next" render="Label" position="541,689" size="80,26" borderWidth="1" backgroundColor="black" transparent="1" zPosition="2" foregroundColor="amavi" font="Regular; 18" halign="right" valign="center">
+      <convert type="EventTime">Duration</convert>
+      <convert type="ClockToText">InMinutes</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" position="966,692" size="73,21" borderWidth="1" font="Roboto; 16" backgroundColor="black" transparent="1" halign="left" noWrap="1" valign="center" foregroundColor="amavi" zPosition="2">
+      <convert type="cnServiceName">%O</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" borderWidth="1" position="97,3" size="72,26" font="Roboto; 25" valign="center" halign="center" backgroundColor="trBlack" transparent="1" foregroundColor="white">
+      <convert type="ClockToText">Format:%a.</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" borderWidth="1" position="13,3" size="84,26" font="Roboto; 25" valign="center" halign="center" backgroundColor="background" transparent="1" foregroundColor="white">
+      <convert type="ClockToText">Format:%e. %m.</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" borderWidth="1" position="169,3" size="69,26" font="Roboto; 25" valign="center" halign="center" backgroundColor="trBlack" transparent="1" foregroundColor="white">
+      <convert type="ClockToText">Format:%Y</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" borderWidth="1" position="1142,3" size="88,26" font="Roboto; 25" valign="center" halign="right" backgroundColor="background" transparent="1" foregroundColor="white">
+      <convert type="ClockToText">Format:%H : %M</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" borderWidth="1" position="1226,5" size="41,22" font="Roboto; 18" valign="center" halign="right" backgroundColor="background" transparent="1" foregroundColor="yellow">
+      <convert type="ClockToText">Format:: %S</convert>
+    </widget>
+    <ePixmap pixmap="CinoGriPLiHd/infobar/pframe.png" position="13,698" size="146,20" zPosition="1" alphatest="blend" />
+    <ePixmap pixmap="CinoGriPLiHd/infobar/wframe.png" position="1173,672" size="93,14" zPosition="1" alphatest="blend" />
+    <widget backgroundColor="black" font="Regular; 12" foregroundColor="Thistle3" borderWidth="1" halign="center" position="1168,672" render="cnRunningText" size="102,14" source="session.MSNWeather" transparent="1" valign="center" zPosition="2" options="movetype=swimming,direction=left,repeat=2,steptime=50,startdelay=1000,noWrap">
+      <convert type="MSNWeather">temperature_text,current</convert>
+    </widget>
+    <eLabel backgroundColor="un33333a" position="965,643" size="193,4" foregroundColor="un33333a" />
+  </screen>
+`</skin>
